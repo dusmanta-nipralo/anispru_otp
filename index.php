@@ -56,7 +56,7 @@
                             <div class="btn_wrapper" data-aos="fade-up">
                                 <!-- <a class="text-decoration-none getstarted_btn" href="index.php">Get Started</a>-->
                             </div>
-                            <a class="top-btn" href="index.php#footer_section">
+                            <a class="top-btn" href="index.php#footer_section" style="display: none;">
                                 <i class="fa-solid fa-arrow-down-long"></i>
                             </a>
                         </div>
