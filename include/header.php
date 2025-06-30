@@ -50,7 +50,7 @@
         <div class="main_header">
             <div class="container-fluid" style="padding-left: 0px !important; ">
                 <nav class="navbar navbar-expand-lg navbar-light p-0">
-                    <a class="navbar-brand" href="index.php"><figure class="mb-0"><img src="assets/images/anisprulogo.png" alt=""></figure></a>
+                    <a class="navbar-brand" href="index.php"><figure class="mb-0        "><img src="assets/images/anisprulogo.png" alt="" style="height: 80px"></figure></a>
                     <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                     <span class="navbar-toggler-icon"></span>

@@ -163,8 +163,9 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <div class="form-group mb-0">
-                                        <input type="tel" name="phone" id="mobile_number" maxlength="10" minlength="10" class="form-control" placeholder="Phone" required>
+                                    <div class="form-group mb-0 country-code">
+                                        <span class="code">+91</span>
+                                        <input class="form-control number" type="number" name="phone" id="phonenum" placeholder="Phone" maxlength="10" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6">
