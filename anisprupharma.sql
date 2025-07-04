@@ -33,7 +33,8 @@ CREATE TABLE `contact` (
   `email` varchar(50) NOT NULL,
   `phone` varchar(50) NOT NULL,
   `service` varchar(50) NOT NULL,
-  `message` varchar(255) NOT NULL
+  `message` varchar(255) NOT NULL,
+--  'otp' varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
