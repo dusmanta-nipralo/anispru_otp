@@ -94,3 +94,4 @@
  <script src="https://unpkg.com/ityped@0.0.10"></script>
  <script src="assets/js/type.js"></script>
  <script src="assets/js/readmoreless.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>

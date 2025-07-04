@@ -1,2 +1,10 @@
 admin/includes/conn.php
 git rm -r --cached Connection/
+# Node.js dependencies
+node_modules/
+
+# Composer (PHP) dependencies
+vendor/
+
+# Optional: Composer lock file (if you don't want to track it)
+# composer.lock

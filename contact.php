@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="zxx">
-
-
 <body>
     <div class="sub-banner-section">
         <?php include 'include/header.php' ?>
@@ -33,47 +31,69 @@
                         <h2>Get in Touch</h2>
                         <!-- <h2>Send us a Message for any Info.</h2> -->
                         <!-- <p>Don’t forget to take your medication!</p> -->
-                        <form id="contactpage" method="POST">
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <div class="form-group mb-0">
-                                        <input type="text" name="name" id="fname" class="form-control" placeholder="First Name" required>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <div class="form-group mb-0">
-                                        <input type="email" name="email" id="emailaddrs" class="form-control form_style" placeholder="Email" required>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <div class="form-group mb-0 country-code">
-                                        <span class="code">+91</span>
-                                        <input class="form-control number" type="number" name="phone" id="phonenum" placeholder="Phone" maxlength="10" required>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <div class="form-group mb-0">
-                                        <select class="form_style" name="service" id="plan" required>
-                                            <option value="services" selected>Services</option>
-                                            <option value="manufacturing">Manufacturing</option>
-                                            <option value="distributor">Distributor</option>
-                                            <option value="retail">Retail</option>
-                                            <option value="export">Export</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class=" form-group mb-0">
-                                        <textarea rows="3" name="message" id="comment" class="form-control" placeholder="Message" required></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="btn_wrapper">
-                                <button type="submit" name="submit" id="started">Submit</button>
-                            </div>
-                        </form>
+<form id="contactpage" method="POST">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="form-group mb-0">
+                <input type="text" name="name" id="fname" class="form-control" placeholder="First Name" required>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="form-group mb-0">
+                <input type="email" name="email" id="emailaddrs" class="form-control form_style" placeholder="Email" required>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="form-group mb-0 country-code">
+                <span class="code">+91</span>
+                <input class="form-control number" type="number" name="phone" id="phonenum" placeholder="Phone" maxlength="10" required>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="form-group mb-0">
+                <select class="form_style" name="service" id="plan" required>
+                    <option value="services" selected>Services</option>
+                    <option value="manufacturing">Manufacturing</option>
+                    <option value="distributor">Distributor</option>
+                    <option value="retail">Retail</option>
+                    <option value="export">Export</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="form-group mb-0">
+                <textarea rows="3" name="message" id="comment" class="form-control" placeholder="Message" required style=""></textarea>
+            </div>
+        </div>
+    </div>
+      <!-- OTP Section -->
+<div id="otp-section" style="display: none;" class="row mt-3 mb-2 align-items-end">
+  <!-- OTP Input Field -->
+  <div class="col-lg-6 col-md-6 col-sm-6 mb-2">
+    <input type="text" name="otp" id="otp" class="form-control" placeholder="Enter OTP" autocomplete="off">
+  </div>
+
+  <!-- Buttons -->
+  <div class="col-lg-6 col-md-6 col-sm-6 d-flex gap-2 mb-3" style="display:flex; gap:1rem">
+    <button type="submit" name="verify" class="btn btn-success w-100" style="height: 63.4px; padding-top:0.5rem;">
+      Verify OTP
+    </button>
+    <button type="button" id="resendOtpBtn" class="btn btn-outline-success w-100" style="height: 63.4px;padding-top:0.5rem;">
+      Resend OTP
+    </button>
+  </div>
+</div>
+
+
+    <!-- OTP Section (hidden initially) -->
+
+    <div class="btn_wrapper mt-3">
+        <button type="button" name="submit" id="started" class="btn btn-success">Submit</button>
+    </div>
+</form>
+
                         <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 emailmargin">
                         <div class="box mb-0">
                             <div class="box_image_content">
@@ -302,8 +322,108 @@
     <!-- FOOTER SECTION -->
     <?php include 'include/footer.php' ?>
 
-</body>
 
+</body>
+<script>
+$(document).ready(function () {
+  const $resendBtn = $('#resendOtpBtn');
+
+  function startResendTimer() {
+    $resendBtn.prop('disabled', true).text('Wait 60s');
+    let countdown = 60;
+    const timer = setInterval(() => {
+      countdown--;
+      $resendBtn.text(`Wait ${countdown}s`);
+      if (countdown <= 0) {
+        clearInterval(timer);
+        $resendBtn.prop('disabled', false).text('Resend OTP');
+      }
+    }, 1000);
+  }
+
+  $('#started').on('click', function (e) {
+    e.preventDefault();
+
+    const name = $('#fname').val().trim();
+    const email = $('#emailaddrs').val().trim();
+    const phone = $('#phonenum').val().trim();
+    const service = $('#plan').val().trim();
+    const message = $('#comment').val().trim();
+
+    if (!name || !email || !phone || !service || !message) {
+      toastr.warning('Please fill all fields.');
+      return;
+    }
+
+    toastr.info("An OTP has been sent...");
+
+    $.ajax({
+      url: 'otp.php',
+      type: 'POST',
+      data: { name, email, phone, service, message },
+      success: function (res) {
+        let data = JSON.parse(res);
+        if (data.status === 'success') {
+          toastr.success(data.message);
+          $('#otp-section').slideDown();
+          $('#started').hide();
+          startResendTimer(); // 🔁 Start timer after sending OTP
+        } else {
+          toastr.error(data.message);
+        }
+      },
+      error: function () {
+        toastr.error('OTP request failed.');
+      }
+    });
+  });
+
+  $('#contactpage').on('submit', function (e) {
+    e.preventDefault();
+
+    const otp = $('#otp').val().trim();
+    const name = $('#fname').val().trim();
+    const email = $('#emailaddrs').val().trim();
+    const phone = $('#phonenum').val().trim();
+    const service = $('#plan').val().trim();
+    const message = $('#comment').val().trim();
+
+    if (!otp) {
+      toastr.warning('Please enter OTP.');
+      return;
+    }
+
+    toastr.info("OTP is verifying...");
+
+    $.ajax({
+      url: 'verify_otp.php',
+      type: 'POST',
+      data: { name, email, phone, service, message, otp },
+      success: function (res) {
+        let data = JSON.parse(res);
+        if (data.status === 'success') {
+          toastr.success(data.message);
+          $('#contactpage')[0].reset();
+          $('#otp-section').hide();
+          $('#started').show();
+          $resendBtn.prop('disabled', false).text('Resend OTP'); // re-enable in case of resubmit
+        } else {
+          toastr.clear();
+          toastr.error(data.message);
+        }
+      },
+      error: function () {
+        toastr.clear();
+        toastr.error('OTP verification failed.');
+      }
+    });
+  });
+
+  $('#resendOtpBtn').on('click', function () {
+    $('#started').click();
+  });
+});
+</script>
 </html>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <?php

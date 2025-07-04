@@ -54,7 +54,7 @@ if (isset($_REQUEST['contact_us_id'])) {
                 <?php
                 $count = 1;
                 if($contacts = $model->singleselect("contact")){
-                  foreach($contacts as $contact){      
+                  foreach($contacts as $contact){
                 ?>
                 <tr>
                   <td> <?= $count; ?></td>
@@ -63,7 +63,7 @@ if (isset($_REQUEST['contact_us_id'])) {
                   <td> <?= $contact['phone'];?></td>
                   <td> <?= $contact['service'];?></td>
                   <td> <?= $contact['message'];?></td>
-                  <td>                  
+                  <td>
                     <a href="contact_us.php?contact_us_id=<?= $contact['id'];?>" class="label label-danger">Delete</a>
                   </td>
                 <?php 
